@@ -1,7 +1,10 @@
 import "dotenv/config";
 
+import fastifySwagger from "@fastify/swagger";
+import fastifySwaggerUI from "@fastify/swagger-ui";
 import Fastify from "fastify";
 import {
+  jsonSchemaTransform,
   serializerCompiler,
   validatorCompiler,
   ZodTypeProvider,
@@ -16,6 +19,27 @@ const app = Fastify({
 // Add schema validator and serializer
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
+
+await app.register(fastifySwagger, {
+  openapi: {
+    info: {
+      title: "Bootcamp Treinos API",
+      description: "API para o botcamp de treinos do FSC",
+      version: "1.0.0",
+    },
+    servers: [
+      {
+        description: "Localhost",
+        url: "http://localhost:3000",
+      },
+    ],
+  },
+  transform: jsonSchemaTransform,
+});
+
+await app.register(fastifySwaggerUI, {
+  routePrefix: "/docs",
+});
 
 // Declare a route
 app.withTypeProvider<ZodTypeProvider>().route({
