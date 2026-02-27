@@ -37,3 +37,9 @@ $ npm install eslint-plugin-simple-import-sort@12.1.1 -D
 
 // Servidor de aplicaçao (express, nest, ...)
 $ npm install fastify@5.7.4
+
+// Gerenciador de arquivo .env
+$ npm install dotenv@17.3.1
+
+// TypeScript-first schema validation with static type inference
+$ npm install zod@4.3.6 fastify-type-provider-zod@6.1.0
