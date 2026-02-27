@@ -7,7 +7,7 @@ $ npm init
 // TypeScript 5.9 includes features specifically designed to improve Node.js compatibility and type checking
 $ npm install typescript@5.9.3 @types/node@24 -D
 
-$ npm install prettier@3.8.1 eslint@9.39.2 -D
+$ npm install prettier@3.8.1 eslint@10.0.1 -D
 
 $ git init
 
@@ -25,3 +25,12 @@ $ npm install tsx@4.21.0 -D
 
 // Roda o projeto com Hot Reload
 $ npm run dev
+
+// Configura o lint no projeto
+$ npm init @eslint/config@1.11.0
+
+// Corrige inconsistencias entre eslint e prettier
+$ npm install eslint-config-prettier@10.1.8
+
+// Sorting para os imports
+$ npm install eslint-plugin-simple-import-sort@12.1.1 -D
