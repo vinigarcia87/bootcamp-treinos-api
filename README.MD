@@ -30,7 +30,10 @@ $ npm run dev
 $ npm init @eslint/config@1.11.0
 
 // Corrige inconsistencias entre eslint e prettier
-$ npm install eslint-config-prettier@10.1.8
+$ npm install eslint-config-prettier@10.1.8 -D
 
 // Sorting para os imports
 $ npm install eslint-plugin-simple-import-sort@12.1.1 -D
+
+// Servidor de aplicaçao (express, nest, ...)
+$ npm install fastify@5.7.4
