@@ -43,3 +43,25 @@ $ npm install dotenv@17.3.1
 
 // TypeScript-first schema validation with static type inference
 $ npm install zod@4.3.6 fastify-type-provider-zod@6.1.0
+
+// Swagger
+$ npm install @fastify/swagger@9.7.0 @fastify/swagger-ui@5.2.5
+
+//Prisma ORM
+$ npm install @prisma/client@7.4.0 @prisma/adapter-pg@7.4.0
+$ npm install prisma@7.4.0 -D
+
+// Inicializa configs do prisma
+$ npx prisma init
+
+// Formata arquivo de schema
+$ npx prisma format
+
+// Rodar banco de dados Postgres com Docker (Rancher Desktop)
+$ docker compose up -d
+
+// Conecta com o banco de dados e cria as tabelas
+$ npx prisma db push
+
+// Roda UI para visualizaçao do banco de dados
+$ npx prisma studio
