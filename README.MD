@@ -86,3 +86,6 @@ $ npx @better-auth/cli@1.4.18 generate
 
 // Suporte CORS (para requests fora do dominio)
 $ npm install @fastify/cors@11.2.0
+
+// Adiciona documentaçao ao projeto
+$ npm install @scalar/fastify-api-reference@1.44.20
