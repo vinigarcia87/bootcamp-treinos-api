@@ -1,5 +1,14 @@
 # BOOTCAMP TREINOS API
 
+## Plugins para o VS Studio
+
+- DotENV
+- ESLint
+- Prettier - Code formatter
+- Prisma
+- Thunder Client
+- Git History
+
 ## Inicializaçao do projeto
 
 $ npm init
@@ -65,3 +74,15 @@ $ npx prisma db push
 
 // Roda UI para visualizaçao do banco de dados
 $ npx prisma studio
+
+// Authentication framework for TypeScript
+$ npm install better-auth@1.4.18
+
+// Gera o prisma client - Cria classes para as tabelas do modelo
+$ npx prisma generate
+
+// Gera as tabelas para o banco de dados necessarias para auth
+$ npx @better-auth/cli@1.4.18 generate
+
+// Suporte CORS (para requests fora do dominio)
+$ npm install @fastify/cors@11.2.0
