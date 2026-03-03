@@ -1,10 +1,12 @@
 import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 
-import { createWorkoutPlanCtrl } from "../controllers/workoutplan.controller.js";
+import { WorkoutPlanCtrl } from "../controllers/workoutplan.controller.js";
 import { ErrorSchema, WorkoutPlanSchema } from "../schemas/schemas.js";
 
 export const workoutPlanRoutes = async (app: FastifyInstance) => {
+  const workoutPlanCtrl = new WorkoutPlanCtrl(app);
+
   app.withTypeProvider<ZodTypeProvider>().route({
     method: "POST",
     url: "/",
@@ -18,6 +20,6 @@ export const workoutPlanRoutes = async (app: FastifyInstance) => {
         500: ErrorSchema,
       },
     },
-    handler: createWorkoutPlanCtrl,
+    handler: workoutPlanCtrl.createWorkoutPlan,
   });
 };

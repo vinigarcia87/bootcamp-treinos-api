@@ -12,9 +12,9 @@ import {
 } from "fastify-type-provider-zod";
 import z from "zod";
 
-import { authRoutes } from "./routes/auth.js";
-import { swaggerRoutes } from "./routes/swagger.js";
-import { workoutPlanRoutes } from "./routes/workout-plan.js";
+import { authRoutes } from "./routes/auth.route.js";
+import { swaggerRoutes } from "./routes/swagger.route.js";
+import { workoutPlanRoutes } from "./routes/workout-plan.route.js";
 
 // Instanciate the framework
 const app = Fastify({
@@ -43,7 +43,7 @@ await app.register(fastifySwagger, {
 });
 
 await app.register(fastifyCors, {
-  origin: ["http://localhost:3001"],
+  origin: [process.env.FRONTEND_URL || "http://localhost:3001"],
   credentials: true,
 });
 
