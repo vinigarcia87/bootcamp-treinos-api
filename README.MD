@@ -18,6 +18,8 @@ $ claude mcp add --transport http context7 https://mcp.context7.com/mcp
 
 - Serena MCP \*Aprender a instalar
 
+https://github.com/oraios/serena
+
 - Instalar uv
   An extremely fast Python package and project manager, written in Rust.
 
@@ -114,7 +116,10 @@ $ pnpm add zod@4.3.6 fastify-type-provider-zod@6.1.0
 
 ```
 // Swagger
-$ pnpm add @fastify/swagger@9.7.0 @fastify/swagger-ui@5.2.5
+$ pnpm add @fastify/swagger@9.7.0
+
+// Swagger UI - Nao vamos utilizar, nao instalar
+$ pnpm add @fastify/swagger-ui@5.2.5
 ```
 
 ```
@@ -171,4 +176,10 @@ $ pnpm add @fastify/cors@11.2.0
 ```
 // Adiciona documentaçao ao projeto
 $ pnpm add @scalar/fastify-api-reference@1.44.20
+```
+
+## Rodar o projeto
+
+```
+$ pnpm run dev
 ```

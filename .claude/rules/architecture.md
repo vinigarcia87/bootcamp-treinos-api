@@ -3,6 +3,10 @@
 - **SEMPRE** use [Conventional Commits](https://www.conventionalcommits.org/) para mensagens de commit. Exemplo: `feat: add start workout session endpoint`, `fix: workout plan validation`, `docs: update architecture rules`.
 - **NUNCA** faça commit sem a permissão explícita do usuário. Sempre aguarde o usuário pedir para commitar.
 
+## Diretorio de Dist
+
+o diretorio `dist/` contem arquivos gerados automaticamente, ignore este diretorio e seu conteudo quando realizar buscas no sistema.
+
 ## Fastify: Rotas de API
 
 - **SEMPRE** siga os princípios do REST para criar rotas. Exemplo: `GET /workout-plans`, `GET /workout-plans/:id/days`.
