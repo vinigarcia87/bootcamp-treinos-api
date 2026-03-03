@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@context7/mcp-server@latest"],
+      "description": "Context7 MCP server for up-to-date documentation"
+    },
+    "serena": {
+      "command": "npx",
+      "args": ["-y", "@serena-tools/mcp-server@latest"],
+      "description": "Serena MCP server for semantic code retrieval and editing"
+    }
+  }
+}
