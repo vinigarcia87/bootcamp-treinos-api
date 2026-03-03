@@ -2,7 +2,7 @@ import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 
 import { createWorkoutPlanCtrl } from "../controllers/workoutplan.controller.js";
-import { ErrorSchema, WorkoutPlanSchema } from "../schemas/index.js";
+import { ErrorSchema, WorkoutPlanSchema } from "../schemas/schemas.js";
 
 export const workoutPlanRoutes = async (app: FastifyInstance) => {
   app.withTypeProvider<ZodTypeProvider>().route({

@@ -4,7 +4,7 @@ import z from "zod";
 
 import { NotFoundError } from "../errors/index.js";
 import { auth } from "../lib/auth.js";
-import { WorkoutPlanSchema } from "../schemas/index.js";
+import { WorkoutPlanSchema } from "../schemas/schemas.js";
 import { CreateWorkoutPlan } from "../usecases/CreateWorkoutPlan.js";
 
 const app = fastify();
