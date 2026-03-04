@@ -14,6 +14,7 @@ import z from "zod";
 
 import { authRoutes } from "./routes/auth.route.js";
 import { homeRoutes } from "./routes/home.route.js";
+import { meRoutes } from "./routes/me.route.js";
 import { statsRoutes } from "./routes/stats.route.js";
 import { swaggerRoutes } from "./routes/swagger.route.js";
 import { workoutPlanRoutes } from "./routes/workout-plan.route.js";
@@ -73,6 +74,7 @@ await app.register(authRoutes);
 await app.register(workoutPlanRoutes, { prefix: "/workout-plans" });
 await app.register(homeRoutes, { prefix: "/home" });
 await app.register(statsRoutes, { prefix: "/stats" });
+await app.register(meRoutes, { prefix: "/me" });
 
 app.withTypeProvider<ZodTypeProvider>().route({
   method: "GET",

@@ -16,6 +16,8 @@ import {
   GetWorkoutDayResponseSchema,
   GetWorkoutPlanParamsSchema,
   GetWorkoutPlanResponseSchema,
+  GetWorkoutPlansQuerySchema,
+  GetWorkoutPlansResponseSchema,
   UpdateWorkoutSessionBodySchema,
   UpdateWorkoutSessionParamsSchema,
   UpdateWorkoutSessionResponseSchema,
@@ -26,10 +28,58 @@ import {
 import { CreateWorkoutPlan } from "../usecases/workoutPlan/CreateWorkoutPlan.js";
 import { GetWorkoutDay } from "../usecases/workoutPlan/GetWorkoutDay.js";
 import { GetWorkoutPlan } from "../usecases/workoutPlan/GetWorkoutPlan.js";
+import { GetWorkoutPlans } from "../usecases/workoutPlan/GetWorkoutPlans.js";
 import { StartWorkoutSession } from "../usecases/workoutPlan/StartWorkoutSession.js";
 import { UpdateWorkoutSession } from "../usecases/workoutPlan/UpdateWorkoutSession.js";
 
 export const workoutPlanRoutes = async (app: FastifyInstance) => {
+  // Rota para listar workout plans
+  app.withTypeProvider<ZodTypeProvider>().route({
+    method: "GET",
+    url: "/",
+    schema: {
+      tags: ["Workout Plan"],
+      summary: "List workout plans",
+      querystring: GetWorkoutPlansQuerySchema,
+      response: {
+        200: GetWorkoutPlansResponseSchema,
+        401: ErrorSchema,
+        500: ErrorSchema,
+      },
+    },
+    handler: async (request, reply) => {
+      try {
+        const session = await auth.api.getSession({
+          headers: fromNodeHeaders(request.headers),
+        });
+
+        if (!session) {
+          return reply.status(401).send({
+            error: "Unauthorized",
+            code: "UNAUTHORIZED",
+          });
+        }
+
+        const getWorkoutPlans = new GetWorkoutPlans();
+        const result = await getWorkoutPlans.execute({
+          userId: session.user.id,
+          active: request.query.active === undefined
+            ? undefined
+            : request.query.active === "true",
+        });
+
+        return reply.status(200).send(result);
+      } catch (error) {
+        app.log.error(error);
+
+        return reply.status(500).send({
+          error: "Internal Server Error",
+          code: "INTERNAL_SERVER_ERROR",
+        });
+      }
+    },
+  });
+
   app.withTypeProvider<ZodTypeProvider>().route({
     method: "POST",
     url: "/",

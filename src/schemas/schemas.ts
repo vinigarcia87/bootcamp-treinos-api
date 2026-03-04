@@ -158,3 +158,56 @@ export const StatsResponseSchema = z.object({
   conclusionRate: z.number(),
   totalTimeInSeconds: z.number(),
 });
+
+export const UpsertUserTrainDataSchema = z.object({
+  weightInGrams: z.number().positive(),
+  heightInCentimeters: z.number().positive(),
+  age: z.number().positive(),
+  bodyFatPercentage: z.number().min(0).max(1), // 0 a 1 (0% a 100%)
+});
+
+export const UserTrainDataResponseSchema = z.object({
+  userId: z.string(),
+  userName: z.string(),
+  weightInGrams: z.number(),
+  heightInCentimeters: z.number(),
+  age: z.number(),
+  bodyFatPercentage: z.number(),
+});
+
+export const MeResponseSchema = z.union([
+  UserTrainDataResponseSchema,
+  z.null(),
+]);
+
+export const GetWorkoutPlansQuerySchema = z.object({
+  active: z.enum(["true", "false"]).optional(),
+});
+
+export const GetWorkoutPlansResponseSchema = z.array(
+  z.object({
+    id: z.uuid(),
+    name: z.string(),
+    isActive: z.boolean(),
+    workoutDays: z.array(
+      z.object({
+        id: z.uuid(),
+        name: z.string(),
+        weekDay: z.enum(WeekDay),
+        isRest: z.boolean(),
+        estimatedDurationInSeconds: z.number(),
+        coverImageUrl: z.string().optional(),
+        exercises: z.array(
+          z.object({
+            id: z.uuid(),
+            name: z.string(),
+            order: z.number(),
+            sets: z.number(),
+            reps: z.number(),
+            restTimeInSeconds: z.number(),
+          }),
+        ),
+      }),
+    ),
+  }),
+);

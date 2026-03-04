@@ -14,19 +14,34 @@ datasource db {
 }
 
 model User {
-  id            String        @id
+  id            String         @id
   workoutPlan   WorkoutPlan[]
   name          String
   email         String
-  emailVerified Boolean       @default(false)
+  emailVerified Boolean        @default(false)
   image         String?
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
   sessions      Session[]
   accounts      Account[]
+  trainData     UserTrainData?
 
   @@unique([email])
   @@map("user")
+}
+
+model UserTrainData {
+  id                  String   @id @default(uuid())
+  userId              String   @unique
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  weightInGrams       Int
+  heightInCentimeters Int
+  age                 Int
+  bodyFatPercentage   Float // 0.25 representa 25%
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@map("user_train_data")
 }
 
 model WorkoutPlan {
