@@ -13,6 +13,7 @@ import {
 import z from "zod";
 
 import { authRoutes } from "./routes/auth.route.js";
+import { homeRoutes } from "./routes/home.route.js";
 import { swaggerRoutes } from "./routes/swagger.route.js";
 import { workoutPlanRoutes } from "./routes/workout-plan.route.js";
 
@@ -69,6 +70,7 @@ await app.register(fastifyApiReference, {
 await app.register(swaggerRoutes);
 await app.register(authRoutes);
 await app.register(workoutPlanRoutes, { prefix: "/workout-plans" });
+await app.register(homeRoutes, { prefix: "/home" });
 
 app.withTypeProvider<ZodTypeProvider>().route({
   method: "GET",
