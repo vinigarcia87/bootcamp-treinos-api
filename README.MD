@@ -1,11 +1,24 @@
 # BOOTCAMP TREINOS API
 
+## Github
+
+https://github.com/vinigarcia87/bootcamp-treinos-api/tree/master
+https://github.com/fullstackclubeducacao/bootcamp-treinos/tree/aula-00
+
+## Figma
+
+https://www.figma.com/design/WrL53UwyzPqOzf1qVdscsN/FIT.AI--Alunos---c%C3%B3pia-?node-id=47-1546&p=f&t=0ElsQjK2x0ertof9-0
+
 ## Claude Code AI
 
 https://www.reddit.com/r/ClaudeAI/comments/1piuih6/claude_rules_clauderules_are_here/
 https://code.claude.com/docs/en/best-practices
 
 https://code.claude.com/docs/en/mcp
+
+- Ver mais tarde
+  https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
+  https://github.com/hesreallyhim/awesome-claude-code
 
 - Context7 MCP
 
@@ -31,6 +44,20 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 ```
 claude mcp add serena -- uvx --from git+https://github.com/oraios/serena serena start-mcp-server --context ide-assistant --project $(pwd)
 ```
+
+- Figma
+
+  O servidor MCP (local no app desktop ou remoto) permite que o Claude “leia” frames, componentes e variáveis de design
+
+  Configuração (Desktop): Ative no Figma (Dev Mode > MCP server) e adicione ao Claude via CLI
+
+```
+claude mcp add --transport http figma-desktop http://127.0.0.1:3845/mcp
+```
+
+## Cursor IDE
+
+https://cursor.com/pricing
 
 ## Plugins para o VS Studio
 

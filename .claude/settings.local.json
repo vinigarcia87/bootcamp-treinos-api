@@ -5,5 +5,10 @@
       "mcp__context7__query-docs",
       "mcp__serena__*"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "context7",
+    "serena"
+  ],
+  "enableAllProjectMcpServers": true
 }
