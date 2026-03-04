@@ -8,15 +8,16 @@ https://code.claude.com/docs/en/best-practices
 https://code.claude.com/docs/en/mcp
 
 - Context7 MCP
-  Up-to-date docs for LLMs and AI code editors
-  Command
+
+  https://github.com/upstash/context7
+  Up-to-date docs for LLMs and AI code editors Command
   Ajuda o Claude a pesquisar melhor tecnologias mais recentes
 
 ```
 $ claude mcp add --transport http context7 https://mcp.context7.com/mcp
 ```
 
-- Serena MCP \*Aprender a instalar
+- Serena MCP
 
 https://github.com/oraios/serena
 
