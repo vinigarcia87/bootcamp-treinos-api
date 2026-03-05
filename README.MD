@@ -211,3 +211,47 @@ $ pnpm add @scalar/fastify-api-reference@1.44.20
 ```
 $ pnpm run dev
 ```
+
+## AI Vercel SDK
+
+https://ai-sdk.dev/docs/introduction
+
+```
+$ pnpm add @ai-sdk/openai@3.0.33 ai@6.0.100
+```
+
+Na parte da IA que o professor usa o pnpm add @ai-sdk/openai@3.0.33 ai@6.0.100 dar para usar o gemini como ele fala
+na hora de instalar usa dessa
+
+```
+pnpm add @ai-sdk/google ai@6.0.100
+```
+
+Depois vai nesse link https://aistudio.google.com/app/api-keys cria sua chave, ele vai pedir para você criar um projeto, se você clicar em criar, automaticamente ele vai criar um projeto padrão, mas se você quiser depois pode criar outra chave a um projeto com o nome que você desejar, no meu caso coloquei apenas Bootcamp
+
+## Login com o Google
+
+https://better-auth.com/docs/authentication/google
+
+- Acessar Google Developer Console
+- Em "Selecionar um Projeto", crie um novo projeto e selecionar o novo projeto
+- Menu > APIs e Serviços > Credenciais
+- Configurar tela de consentimento
+- Preencher informaçoes e criar
+- Criar um cliente OAuth
+- Selecione Web Application
+- Em "URIs de redirecionamento autorizados":
+  Inclua http://localhost:3000/api/auth/callback/google for local development.
+  For production, make sure to set the redirect URL as your application domain, e.g. https://example.com/api/auth/callback/google
+- Em "Origens JavaScript autorizadas"
+  Inclua http://localhost:3000
+
+---
+
+# BOOTCAMP TREINOS FRONTEND
+
+## Criar projeto Next
+
+```
+$ pnpm dlx create-next-app@16
+```
