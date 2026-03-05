@@ -215,19 +215,22 @@ $ pnpm run dev
 ## AI Vercel SDK
 
 https://ai-sdk.dev/docs/introduction
+https://ai-sdk.dev/providers/ai-sdk-providers/google-generative-ai
 
 ```
 $ pnpm add @ai-sdk/openai@3.0.33 ai@6.0.100
 ```
 
-Na parte da IA que o professor usa o pnpm add @ai-sdk/openai@3.0.33 ai@6.0.100 dar para usar o gemini como ele fala
+Na parte da IA que o professor usa o pnpm add @ai-sdk/openai@3.0.33 ai@6.0.100 dar para usar o gemini como ele fala. Gemini do Google tem plano gratuito
 na hora de instalar usa dessa
 
 ```
 pnpm add @ai-sdk/google ai@6.0.100
 ```
 
-Depois vai nesse link https://aistudio.google.com/app/api-keys cria sua chave, ele vai pedir para você criar um projeto, se você clicar em criar, automaticamente ele vai criar um projeto padrão, mas se você quiser depois pode criar outra chave a um projeto com o nome que você desejar, no meu caso coloquei apenas Bootcamp
+Depois vai nesse link https://aistudio.google.com/app/api-keys cria sua chave, ele vai pedir para você criar um projeto, se você clicar em criar, automaticamente ele vai criar um projeto padrão, mas se você quiser depois pode criar outra chave a um projeto com o nome que você desejar
+Setar chaves em .env
+GOOGLE_GENERATIVE_AI_API_KEY=""
 
 ## Login com o Google
 
@@ -245,6 +248,9 @@ https://better-auth.com/docs/authentication/google
   For production, make sure to set the redirect URL as your application domain, e.g. https://example.com/api/auth/callback/google
 - Em "Origens JavaScript autorizadas"
   Inclua http://localhost:3000
+- Setar chaves em .env
+  GOOGLE_CLIENT_ID=""
+  GOOGLE_CLIENT_SECRET=""
 
 ---
 
@@ -254,4 +260,18 @@ https://better-auth.com/docs/authentication/google
 
 ```
 $ pnpm dlx create-next-app@16
+```
+
+```
+// Instalar o Better Auth
+$ pnpm add better-auth@1.4.18
+```
+
+```
+// Criar projeto Shadcn UI - A set of beautifully designed components that you can customize
+// https://ui.shadcn.com/docs/installation
+$ pnpm dlx shadcn@3.8.5 init
+
+// Adiciona componentes do shadcn
+$ pnpm dlx shadcn@3.8.5 add input button card badge avatar
 ```

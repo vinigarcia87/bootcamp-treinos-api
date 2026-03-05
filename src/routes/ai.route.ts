@@ -197,7 +197,7 @@ Seja motivacional e ajude o usuário a alcançar seus objetivos!`;
 
         // Configurar streamText com tools e multi-step
         const result = streamText({
-          model: google("gemini-2.0-flash-exp"), // "gemini-2.0-flash"
+          model: google("gemini-2.5-flash"), // "gemini-2.0-flash"
           system: systemPrompt,
           messages: messages.map((msg) => ({
             role: msg.role,
