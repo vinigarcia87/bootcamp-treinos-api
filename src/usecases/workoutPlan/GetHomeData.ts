@@ -17,7 +17,7 @@ interface InputDto {
 
 interface OutputDto {
   activeWorkoutPlanId: string;
-  todayWorkoutDay: {
+  todayWorkoutDay?: {
     workoutPlanId: string;
     id: string;
     name: string;
@@ -74,12 +74,8 @@ export class GetHomeData {
 
     // Encontrar o workout day correspondente à data
     const todayWorkoutDay = activeWorkoutPlan.workoutDays.find(
-      (day) => day.weekDay === targetWeekDay
+      (day) => day.weekDay === targetWeekDay,
     );
-
-    if (!todayWorkoutDay) {
-      throw new NotFoundError("No workout day found for the specified date");
-    }
 
     // Calcular início e fim da semana (domingo a sábado) em UTC
     const startOfWeek = inputDate.startOf("week"); // domingo 00:00:00
@@ -111,38 +107,47 @@ export class GetHomeData {
       const dateKey = currentDay.format("YYYY-MM-DD");
 
       const sessionsOnDay = weekSessions.filter((session) =>
-        dayjs.utc(session.startedAt).isSame(currentDay, "day")
+        dayjs.utc(session.startedAt).isSame(currentDay, "day"),
       );
 
       consistencyByDay[dateKey] = {
         workoutDayStarted: sessionsOnDay.length > 0,
         workoutDayCompleted: sessionsOnDay.some(
-          (session) => session.completedAt !== null
+          (session) => session.completedAt !== null,
         ),
       };
     }
 
     // Calcular workout streak
-    const workoutStreak = await this.calculateWorkoutStreak(dto.userId, inputDate);
+    const workoutStreak = await this.calculateWorkoutStreak(
+      dto.userId,
+      inputDate,
+    );
 
     return {
       activeWorkoutPlanId: activeWorkoutPlan.id,
-      todayWorkoutDay: {
-        workoutPlanId: activeWorkoutPlan.id,
-        id: todayWorkoutDay.id,
-        name: todayWorkoutDay.name,
-        isRest: todayWorkoutDay.isRest,
-        weekDay: todayWorkoutDay.weekDay,
-        estimatedDurationInSeconds: todayWorkoutDay.estimatedDurationInSeconds,
-        coverImageUrl: todayWorkoutDay.coverImageUrl || undefined,
-        exercisesCount: todayWorkoutDay.exercises.length,
-      },
+      todayWorkoutDay: todayWorkoutDay
+        ? {
+            workoutPlanId: activeWorkoutPlan.id,
+            id: todayWorkoutDay.id,
+            name: todayWorkoutDay.name,
+            isRest: todayWorkoutDay.isRest,
+            weekDay: todayWorkoutDay.weekDay,
+            estimatedDurationInSeconds:
+              todayWorkoutDay.estimatedDurationInSeconds,
+            coverImageUrl: todayWorkoutDay.coverImageUrl || undefined,
+            exercisesCount: todayWorkoutDay.exercises.length,
+          }
+        : undefined,
       workoutStreak,
       consistencyByDay,
     };
   }
 
-  private async calculateWorkoutStreak(userId: string, currentDate: dayjs.Dayjs): Promise<number> {
+  private async calculateWorkoutStreak(
+    userId: string,
+    currentDate: dayjs.Dayjs,
+  ): Promise<number> {
     // Buscar todas as sessões completadas do usuário, ordenadas por data decrescente
     const completedSessions = await prisma.workoutSession.findMany({
       where: {

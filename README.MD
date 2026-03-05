@@ -275,3 +275,26 @@ $ pnpm dlx shadcn@3.8.5 init
 // Adiciona componentes do shadcn
 $ pnpm dlx shadcn@3.8.5 add input button card badge avatar
 ```
+
+```
+$ pnpm add dotenv@17.3.1
+```
+
+```
+$ pnpm add prettier@3.8.1 -D
+```
+
+```
+$ pnpm add dayjs@1.11.19
+```
+
+```
+// Orval - Generate clients with appropriate type signatures
+// Le o swagger.json do backend e gera clients automaticamente
+$ pnpm add orval@8.1.0 -D
+```
+
+```
+// Roda o Orval
+$ npx orval
+```
