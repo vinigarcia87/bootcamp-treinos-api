@@ -5,7 +5,7 @@ interface InputDto {
   weightInGrams: number;
   heightInCentimeters: number;
   age: number;
-  bodyFatPercentage: number; // 1 representa 100%
+  bodyFatPercentage: number; // 100 representa 100%
 }
 
 interface OutputDto {
@@ -27,14 +27,14 @@ export class UpsertUserTrainData {
         weightInGrams: dto.weightInGrams,
         heightInCentimeters: dto.heightInCentimeters,
         age: dto.age,
-        bodyFatPercentage: dto.bodyFatPercentage,
+        bodyFatPercentage: dto.bodyFatPercentage / 100, // Converter para decimal (0-1)
       },
       create: {
         userId: dto.userId,
         weightInGrams: dto.weightInGrams,
         heightInCentimeters: dto.heightInCentimeters,
         age: dto.age,
-        bodyFatPercentage: dto.bodyFatPercentage,
+        bodyFatPercentage: dto.bodyFatPercentage / 100, // Converter para decimal (0-1)
       },
     });
 
@@ -43,7 +43,7 @@ export class UpsertUserTrainData {
       weightInGrams: trainData.weightInGrams,
       heightInCentimeters: trainData.heightInCentimeters,
       age: trainData.age,
-      bodyFatPercentage: trainData.bodyFatPercentage,
+      bodyFatPercentage: trainData.bodyFatPercentage * 100, // Converter de volta para inteiro (0-100)
     };
   }
 }

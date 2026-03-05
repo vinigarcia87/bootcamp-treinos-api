@@ -163,7 +163,7 @@ export const UpsertUserTrainDataSchema = z.object({
   weightInGrams: z.number().positive(),
   heightInCentimeters: z.number().positive(),
   age: z.number().positive(),
-  bodyFatPercentage: z.number().min(0).max(1), // 0 a 1 (0% a 100%)
+  bodyFatPercentage: z.number().min(0).max(100), // 0 a 100 (0% a 100%)
 });
 
 export const UserTrainDataResponseSchema = z.object({
