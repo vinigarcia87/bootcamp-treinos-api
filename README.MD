@@ -67,6 +67,7 @@ https://cursor.com/pricing
 - Prisma
 - Thunder Client
 - Git History
+- vscode-icons
 
 ## Inicializaçao do projeto
 
@@ -297,4 +298,19 @@ $ pnpm add orval@8.1.0 -D
 ```
 // Roda o Orval
 $ npx orval
+```
+
+```
+// Nuqs - Type-safe search params state manager for React
+$ pnpm add nuqs@2.8.8
+```
+
+```
+// StreamDown
+$ pnpm add streamdown@2.2.0
+```
+
+```
+//
+$ pnpm add ai@6.0.49 @ai-sdk/react@3.0.51
 ```

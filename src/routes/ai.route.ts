@@ -208,14 +208,14 @@ Seja motivacional e ajude o usuário a alcançar seus objetivos!`;
         });
 
         // Retornar stream response
+        /*
         reply.header("Content-Type", "text/plain; charset=utf-8");
         return reply.send(result.toUIMessageStream());
-        /*
+        */
         const response = result.toUIMessageStreamResponse();
         reply.status(response.status);
         response.headers.forEach((value, key) => reply.header(key, value));
         return reply.send(response.body);
-        */
       } catch (error) {
         app.log.error(error);
         return reply.status(500).send({
