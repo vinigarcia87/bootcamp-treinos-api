@@ -12,6 +12,7 @@ import {
 } from "fastify-type-provider-zod";
 import z from "zod";
 
+import { env } from "./lib/env.js";
 import { aiRoutes } from "./routes/ai.route.js";
 import { authRoutes } from "./routes/auth.route.js";
 import { homeRoutes } from "./routes/home.route.js";
@@ -20,9 +21,23 @@ import { statsRoutes } from "./routes/stats.route.js";
 import { swaggerRoutes } from "./routes/swagger.route.js";
 import { workoutPlanRoutes } from "./routes/workout-plan.route.js";
 
+const envToLogger = {
+  development: {
+    transport: {
+      target: "pino-pretty",
+      options: {
+        translateTime: "HH:MM:ss Z",
+        ignore: "pid,hostname",
+      },
+    },
+  },
+  production: true,
+  test: false,
+};
+
 // Instanciate the framework
 const app = Fastify({
-  logger: true,
+  logger: envToLogger[env.NODE_ENV] ?? true, // defaults to true if no entry matches in the map
 });
 
 // Add schema validator and serializer
@@ -47,7 +62,7 @@ await app.register(fastifySwagger, {
 });
 
 await app.register(fastifyCors, {
-  origin: [process.env.FRONTEND_URL || "http://localhost:3001"],
+  origin: [env.FRONTEND_URL || "http://localhost:3001"],
   credentials: true,
 });
 
@@ -100,7 +115,7 @@ app.withTypeProvider<ZodTypeProvider>().route({
 
 // Run the server!
 try {
-  await app.listen({ port: Number(process.env.PORT) || 3000 });
+  await app.listen({ host: "0.0.0.0", port: Number(process.env.PORT) || 3000 });
 } catch (err) {
   app.log.error(err);
   process.exit(1);

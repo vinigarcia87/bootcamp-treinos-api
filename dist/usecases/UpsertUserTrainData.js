@@ -1,0 +1,31 @@
+import { prisma } from "../lib/db.js";
+export class UpsertUserTrainData {
+    async execute(dto) {
+        // Usar upsert para criar ou atualizar os dados de treino
+        const trainData = await prisma.userTrainData.upsert({
+            where: {
+                userId: dto.userId,
+            },
+            update: {
+                weightInGrams: dto.weightInGrams,
+                heightInCentimeters: dto.heightInCentimeters,
+                age: dto.age,
+                bodyFatPercentage: dto.bodyFatPercentage / 100, // Converter para decimal (0-1)
+            },
+            create: {
+                userId: dto.userId,
+                weightInGrams: dto.weightInGrams,
+                heightInCentimeters: dto.heightInCentimeters,
+                age: dto.age,
+                bodyFatPercentage: dto.bodyFatPercentage / 100, // Converter para decimal (0-1)
+            },
+        });
+        return {
+            userId: trainData.userId,
+            weightInGrams: trainData.weightInGrams,
+            heightInCentimeters: trainData.heightInCentimeters,
+            age: trainData.age,
+            bodyFatPercentage: trainData.bodyFatPercentage * 100, // Converter de volta para inteiro (0-100)
+        };
+    }
+}

@@ -314,3 +314,26 @@ $ pnpm add streamdown@2.2.0
 //
 $ pnpm add ai@6.0.49 @ai-sdk/react@3.0.51
 ```
+
+# DEPLOY
+
+- Refatorar codigo para usar src\lib\env.ts ao inves de process.env, pois o arquivo tem validaçao de tipos
+
+```
+// Cria msgs de log melhores
+$ pnpm add pino-pretty@13.1.3
+```
+
+```
+// Builda os arquivos ts, gerando arquivos js no diretorio dist/
+$ pnpm run build
+```
+
+// Rodar a build de produçao na docker
+$ docker build . -t bootcamp-treinos-api
+
+// Database
+neon db - neon.tech
+
+// Deploy
+render.com > new web service
